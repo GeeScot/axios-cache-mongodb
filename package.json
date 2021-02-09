@@ -1,6 +1,6 @@
 {
   "name": "axios-cache-mongodb",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "MongoDB Cache Adapter for axios",
   "main": "index.js",
   "scripts": {

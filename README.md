@@ -1,6 +1,8 @@
 # axios cache adapter
 
-a simple cache adapter for axios to cache requests in mongodb with a TTL index on the collection (the collection will be created with the index if it doesn't already exist)
+a simple cache adapter for axios to cache GET requests in mongodb with a TTL index on the collection (the collection will be created with the index if it doesn't already exist)
+
+currently matches records on method, url, data, and params
 
 # usage
 

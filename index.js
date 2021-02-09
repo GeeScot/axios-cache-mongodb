@@ -40,18 +40,23 @@ const createCache = ({ db, collectionName, expireAfterSeconds }) => {
 
   return (config) => {
     return new Promise(async (resolve, reject) => {
-      const axiosCache = db.collection(collectionName);
-      axiosCache.createIndex({ "cachedAt": 1 }, { expireAfterSeconds: expireAfterSeconds });
-  
-      const cachedRequest = await checkCache(config);
-  
-      if (cachedRequest) {
-        await settle(resolve, reject, cachedRequest.response);
-        return;
+      const isGetRequest = config.method.toLowerCase() === 'get';
+
+      if (isGetRequest) {
+        const axiosCache = db.collection(collectionName);
+        axiosCache.createIndex({ "cachedAt": 1 }, { expireAfterSeconds: expireAfterSeconds });
+    
+        const cachedRequest = await checkCache(config);
+        if (cachedRequest) {
+          await settle(resolve, reject, cachedRequest.response);
+          return;
+        }
       }
   
       const response = await httpAdapter(config);
-      await cacheResponse(config, response);
+      if (isGetRequest) {
+        await cacheResponse(config, response);
+      }
   
       await settle(resolve, reject, response);
     })
