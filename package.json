@@ -1,6 +1,6 @@
 {
   "name": "axios-cache-mongodb",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "MongoDB Cache Adapter for axios",
   "main": "index.js",
   "scripts": {
@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/codescot/axios-cache-mongodb#readme",
   "dependencies": {
-    "axios": "^0.21.1"
+    "axios": "^0.21.1",
+    "lodash": "^4.17.20"
   }
 }
